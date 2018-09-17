@@ -1,0 +1,272 @@
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+body {
+  line-height: 1;
+}
+input {
+  vertical-align: middle;
+}
+input:focus, textarea:focus, button:focus {
+  outline: 0;
+  box-shadow: none;
+}
+input, button, textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: #404040;
+  line-height: initial;
+}
+
+.form_post {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+.form_input {
+  display: block;
+  background-color: #eee;
+  border: solid 1px #c7c7c7;
+  width: 72%;
+  height: 44px;
+  padding-left: 20px;
+  float: left;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 16px;
+  border-radius: 4px;
+  line-height: 44px;
+  resize: none;
+}::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+/* optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+.ms_send {
+  display: block;
+  float: left;
+  vertical-align: top;
+  background-color: #ff6462;
+  border: 1px solid #ff6462;
+  width: 20%;
+  height: 28px;
+  margin: 0 8px;
+  margin-left: 4%;
+  font-size: 14px;
+  color: #fff;
+  border-radius: 4px;
+  padding: 3px 0 2px;
+}
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+/* modal image
+  -------------------- */
+.modal_show {
+  height:100vh;
+}
+.on_display_alert {
+  overflow: hidden;
+  position: fixed;
+}
+.img_modal {
+  display: block;
+  position: fixed;
+  z-index: 13;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgb(0,0,0);
+}
+.img_modal-content {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  width: 100%;
+  z-index: 14;
+}
+.modal-display {
+    display: none;
+    position: fixed;
+    z-index: 12;
+    left: 0;
+    top: 0;
+    width: 2000px;
+    height: 3000px;
+    overflow: auto;
+    background-color: #fff;
+}
+
+.modal {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: none;
+  z-index: 10;
+}
+.modal_overLay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+}
+.modal_inner {
+  position: absolute;
+  z-index: 11;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  width: 260px;
+  height: 120px;
+  border-radius: 12px;
+}
+.modal_btn {
+  float: left;
+  width: 46.43%;
+}
+.modal_btn:first-child {
+  margin-right: 6%;
+}
+.modal_btnArea {
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+  margin: 20px 0 0;
+}
+.modal_btn-close {
+  padding: 16px 0;
+  display: block;
+  border: solid 1px #666;
+  box-sizing: border-box;
+  border-radius: 12px;
+  color: #666;
+}
+.modal_btn-next {
+  padding: 16px 0;
+  display: block;
+  border-radius: 12px;
+  background: #ff6462;
+  border: solid 1px #f95a58;
+  box-sizing: border-box;
+  color: #fff;
+}
+.modal_hd {
+  text-align: center;
+  display: block;
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+.modal_txt {
+  text-align: center;
+  color: #999;
+  margin: 10px 0;
+}
+/* image cicle
+  -------------------- */
+.img_circle {
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}

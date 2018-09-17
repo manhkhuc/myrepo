@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<style>
+	body {
+	  background: #fff;
+	}
+	.shimmer {
+	  font-family: "Lato";
+	  font-weight: 300;
+	  font-size: 3em;
+	  margin: 0 auto;
+	  padding: 0 140px 0 0;
+	  display: inline;
+	  margin-bottom: 0;
+	}
+	p {
+	  font-family: "Lato";
+	  font-weight: 300;
+	  font-size: 1em;
+	  color: rgba(255,255,255,0.65);
+	  width: 500px;
+	  text-align: justify;
+	  line-height: 1.5em;
+	  border-top: 1px dashed rgba(255,255,255,0.2);
+	  margin: 10px 0 0 5px;
+	  padding-top: 10px;
+	}
+	p a {
+	  text-decoration: none;
+	  color: #fff;
+	}
+	p a:visted {
+	  color: #fff;
+	}
+	.shimmer {
+	  text-align: center;
+	  color: rgba(0,0,0,0.5);
+	  background: -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff));
+	  background: -moz-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff));
+	  background: gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff));
+	  -webkit-background-size: 125px 100%;
+	  -moz-background-size: 125px 100%;
+	  background-size: 125px 100%;
+	  -webkit-background-clip: text;
+	  -moz-background-clip: text;
+	  background-clip: text;
+	  -webkit-animation-name: shimmer;
+	  -moz-animation-name: shimmer;
+	  animation-name: shimmer;
+	  -webkit-animation-duration: 2s;
+	  -moz-animation-duration: 2s;
+	  animation-duration: 2s;
+	  -webkit-animation-iteration-count: infinite;
+	  -moz-animation-iteration-count: infinite;
+	  animation-iteration-count: infinite;
+	  background-repeat: no-repeat;
+	  background-position: 0 0;
+	  background-color: #222;
+	}
+
+	@-moz-keyframes shimmer {
+	  0% {
+		background-position: top left;
+	  }
+	  100% {
+		background-position: top right;
+	  }
+	}
+	@-webkit-keyframes shimmer {
+	  0% {
+		background-position: top left;
+	  }
+	  100% {
+		background-position: top right;
+	  }
+	}
+	@-o-keyframes shimmer {
+	  0% {
+		background-position: top left;
+	  }
+	  100% {
+		background-position: top right;
+	  }
+	}
+	
+	@keyframes shimmer {
+	  0% {
+		background-position: top left;
+	  }
+	  100% {
+		background-position: top right;
+	  }
+	}
+	
+	@keyframes placeHolderShimmer{
+		0%{
+			background-position: -100vh 0;
+		}
+		100%{
+			background-position: 100vh 0;
+		}
+	}
+
+	.animated-background {
+		animation-duration: 2s;
+	    -webkit-animation-duration: 2s;
+	    -moz-animation-duration: 2s;
+		animation-fill-mode: forwards;
+		-webkit-animation-iteration-count: infinite;
+		-moz-animation-iteration-count: infinite;
+		animation-iteration-count: infinite;
+		-webkit-animation-name: placeHolderShimmer;
+		-moz-animation-name: placeHolderShimmer;
+		animation-name: placeHolderShimmer;
+		-webkit-animation-timing-function: linear;
+		-moz-animation-timing-function: linear;
+		-webkit-animation-timing-function: linear;
+		-moz-animation-timing-function: linear;
+		animation-timing-function: linear;
+		-webkit-background-size: 100% 100%;
+		-moz-background-size: 100% 100%;
+		background-size: 100% 100%;
+		background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+		height: 200px;
+		position: relative;
+	}
+	
+	.timeline-item {
+		background: #fff;
+		margin: 0 auto;
+		width: 100%;
+		min-height: 200px;
+		max-height: 400px;
+	}
+	</style>
+  </head>
+  <body>
+	<div style="width=100%;">
+		<h1 class='shimmer'> Pure CSS Shimmer</h1>
+	</div>
+	<div class="timeline-item">
+		<div class="animated-background">
+		</div>
+	</div>
+  </body>
+</html>

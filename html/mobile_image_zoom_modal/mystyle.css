@@ -1,0 +1,124 @@
+
+/* modal image
+  -------------------- */
+.modal_show {
+  height:100vh;
+}
+.on_display_alert {
+  overflow: hidden;
+  position: fixed;
+}
+.img_modal {
+  display: block;
+  position: fixed;
+  z-index: 13;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgb(0,0,0);
+}
+.img_modal-content {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  width: 100%;
+  z-index: 14;
+}
+.modal-display {
+    display: none;
+    position: fixed;
+    z-index: 12;
+    left: 0;
+    top: 0;
+    width: 2000px;
+    height: 3000px;
+    overflow: auto;
+    background-color: #fff;
+}
+
+.modal {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: none;
+  z-index: 10;
+}
+.modal_overLay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+}
+.modal_inner {
+  position: absolute;
+  z-index: 11;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  width: 260px;
+  height: 120px;
+  border-radius: 12px;
+}
+.modal_btn {
+  float: left;
+  width: 46.43%;
+}
+.modal_btn:first-child {
+  margin-right: 6%;
+}
+.modal_btnArea {
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+  margin: 20px 0 0;
+}
+.modal_btn-close {
+  padding: 16px 0;
+  display: block;
+  border: solid 1px #666;
+  box-sizing: border-box;
+  border-radius: 12px;
+  color: #666;
+}
+.modal_btn-next {
+  padding: 16px 0;
+  display: block;
+  border-radius: 12px;
+  background: #ff6462;
+  border: solid 1px #f95a58;
+  box-sizing: border-box;
+  color: #fff;
+}
+.modal_hd {
+  text-align: center;
+  display: block;
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+.modal_txt {
+  text-align: center;
+  color: #999;
+  margin: 10px 0;
+}
+/* image cicle
+  -------------------- */
+.img_circle {
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}

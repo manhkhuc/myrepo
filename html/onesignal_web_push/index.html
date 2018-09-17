@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="manifest" href="./manifest.json" />
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+	<script>
+		var OneSignal = window.OneSignal || [];
+		OneSignal.push(function() {
+				OneSignal.init({
+				appId: "ee99ed47-c2ed-44d5-80fe-33fde978c1d2",
+			});
+			OneSignal.log.setLevel('trace');
+		});
+		function showOI(){
+			OneSignal.push(["setSubscription", true]);
+			console.log("begin")
+			OneSignal.push(function() {
+				OneSignal.isPushNotificationsEnabled(function(isEnabled) {
+					if (isEnabled)
+						console.log("Push notifications are enabled!");
+					else
+						console.log("Push notifications are not enabled yet.");
+						console.log('Is Completely Subscribed:', isSubscribed);
+				});
+
+				OneSignal.isPushNotificationsEnabled().then(function(isEnabled) {
+					if (isEnabled)
+						console.log("Push notifications are enabled!");
+					else
+						console.log("Push notifications are not enabled yet.");
+				});
+				OneSignal.push(["getNotificationPermission", function(permission) {
+					console.log("Site Notification Permission:", permission);
+				}]);
+				function isPushNotificationsEnabledVerbose() {
+					console.log('isPushNotificationsEnabledVerbose()');
+					Promise.all([
+						OneSignal.isPushNotificationsEnabled(),
+						OneSignal.getUserId(),
+						OneSignal.getRegistrationId(),
+						OneSignal.getNotificationPermission(),
+						OneSignal.isOptedOut(),
+						OneSignal.context.serviceWorkerManager.getActiveState()
+					])
+					.then(([isSubscribed, userId, registrationId, notificationPermission, optedOut, serviceWorkerActive]) => {
+						console.log('Is Completely Subscribed:', isSubscribed);
+						console.log('');
+						console.log('What is our OneSignal user ID?', userId);
+						console.log('What is our push subscription token?', registrationId);
+						console.log('What is the notification permission status?', notificationPermission);
+						console.log('Are you manually opted out?', optedOut);
+						console.log("Is a service worker registered and active? (should be false on Safari, otherwise should be 'Worker A (Main)')?", serviceWorkerActive);
+						console.log('What is the current URL of this page?', location.href);
+						console.log("What environment does OneSignal think it's in?", OneSignal.sdkEnvironment.getWindowEnv());
+					})
+					.catch(e => {
+						console.error("Issue determining whether push is enabled:", e);
+					});
+				}
+				isPushNotificationsEnabledVerbose();
+			});
+		};
+	</script>
+</head>
+<body>
+	<div>
+		<p>This is Test</p>
+		<input type="button" id="btn" value="ask" onclick="askO();"/>
+		<input type="button" id="btn2" value="show info" onclick="showOI();"/>
+	</div>
+</body>
+</html>

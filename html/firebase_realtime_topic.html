@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Topic</title>
+        <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+        <script src='https://cdn.firebase.com/js/client/2.4.0/firebase.js'></script>
+		<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/195902112/km_app_article1', [300, 100], 'div-gpt-ad-1524117146441-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/195902112/km_app_article2', [300, 250], 'div-gpt-ad-1524117332066-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+        <style>
+            body {
+                font-family: 'HelveticaNeue-Light';
+            }
+            .msg {
+                margin: 10px 0;
+                padding: 10px;
+                width: 400px;
+                background-color: #efefef;
+            }
+            #username, #text {
+                margin: 5px 0px;
+            }
+            #post, #setup {
+                padding: 0.5em 1em;
+                background-color: #50b1ff;
+                border: none;
+                color: #FFF;
+            }
+        </style>
+    </head>
+    <body>
+		<label>user name: </label>
+        <input id="username" type="text" placeholder="Name"><br/>
+		<label>forum: </label>
+        <input id="forum" type="text" placeholder="forum"><br/>
+		<label>topic: </label>
+        <input id="topic" type="text" placeholder="topic"><br/>
+		<button id="setup">setup</button><br/>
+		<label>msg: </label>
+        <input id="text" type="text" placeholder="Message"><br/>
+        <button id="post" disabled="disabled">Post</button><br/>
+        <div id="results"></div>
+        <script>
+            var myFirebase = new Firebase('https://webpushtest-196502.firebaseio.com/');
+            var usernameInput = document.querySelector('#username');
+            var forumInput = document.querySelector('#forum');
+            var topicInput = document.querySelector('#topic');
+            var textInput = document.querySelector('#text');
+            var postButton = document.querySelector('#post');
+            var setupButton = document.querySelector('#setup');
+			var topicRef;
+			setupButton.addEventListener("click", function() {
+				topicRef = myFirebase.ref().child(forumInput.value + "," + topicInput.value);
+				if (topicRef) {
+					topicRef.remove();
+				}
+				/** Function to add a data listener **/
+				var startListening = function() {
+					topicRef.on('child_added', function(snapshot) {
+						var msg = snapshot.val();
+						var msgUsernameElement = document.createElement("b");
+						msgUsernameElement.textContent = msg.username;
+						var msgTextElement = document.createElement("p");
+						msgTextElement.textContent = msg.text;
+						var msgElement = document.createElement("div");
+						msgElement.appendChild(msgUsernameElement);
+						msgElement.appendChild(msgTextElement);
+						msgElement.className = "msg";
+						document.getElementById("results").appendChild(msgElement);
+					});
+				}
+				// Begin listening for data
+				startListening();
+				setupButton.disabled = true;
+				postButton.disabled = false;
+            });
+            postButton.addEventListener("click", function() {
+                var msgUser = usernameInput.value;
+                var msgText = textInput.value;
+				if (topicRef) {
+					topicRef.push({username:msgUser, text:msgText});
+					textInput.value = "";
+				}
+            });
+            
+        </script>
+		<!-- /195902112/km_app_article1 -->
+<div id='div-gpt-ad-1524117146441-0' style='height:100px; width:300px;'>
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1524117146441-0'); });
+</script>
+</div>
+    </body>
+</html>

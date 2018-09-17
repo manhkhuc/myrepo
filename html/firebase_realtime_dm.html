@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>DM</title>
+        <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+        <script src='https://cdn.firebase.com/js/client/2.4.0/firebase.js'></script>
+		<script src='https://code.jquery.com/jquery-3.3.1.js'></script>
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <style>
+            body {
+                font-family: 'HelveticaNeue-Light';
+            }
+            .msg {
+                margin: 10px 0;
+                padding: 10px;
+                width: 400px;
+                background-color: #efefef;
+            }
+            #username, #text {
+                margin: 5px 0px;
+            }
+            #post, #setup {
+                padding: 0.5em 1em;
+                background-color: #50b1ff;
+                border: none;
+                color: #FFF;
+            }
+        </style>
+    </head>
+    <body>
+		<label>user name: </label>
+        <input id="username" type="text" placeholder="Name"><br/>
+		<label>opponent name: </label>
+        <input id="opponentname" type="text" placeholder="Name"><br/>
+		<button id="setup">setup</button><br/>
+		<label>msg: </label>
+        <input id="text" type="text" placeholder="Message"><br/>
+        <button id="post" disabled="disabled">Post</button><br/>
+        <div id="results"></div>
+        <script>
+            var myFirebase = new Firebase('https://webpushtest-196502.firebaseio.com/');
+            var usernameInput = document.querySelector('#username');
+            var opponentnameInput = document.querySelector('#opponentname');
+            var textInput = document.querySelector('#text');
+            var postButton = document.querySelector('#post');
+            var setupButton = document.querySelector('#setup');
+			var myRef;
+			var opponentRef;
+			setupButton.addEventListener("click", function() {
+				myRef = myFirebase.ref().child(usernameInput.value);
+				opponentRef = myFirebase.ref().child(opponentnameInput.value);
+				if (myRef) {
+					myRef.remove();
+				}
+				/** Function to add a data listener **/
+				var startListening = function() {
+					myRef.on('child_added', function(snapshot) {
+						var msg = snapshot.val();
+						myRef.child(snapshot.key()).remove();
+						var msgUsernameElement = document.createElement("b");
+						msgUsernameElement.textContent = msg.username;
+						var msgTextElement = document.createElement("p");
+						msgTextElement.textContent = msg.text;
+						var msgElement = document.createElement("div");
+						msgElement.appendChild(msgUsernameElement);
+						msgElement.appendChild(msgTextElement);
+						msgElement.className = "msg";
+						document.getElementById("results").appendChild(msgElement);
+					});
+					opponentRef.on('child_added', function(snapshot) {
+						var msg = snapshot.val();
+						console.log(msg);
+						var msgUsernameElement = document.createElement("b");
+						msgUsernameElement.textContent = msg.username;
+						var msgTextElement = document.createElement("p");
+						msgTextElement.textContent = msg.text;
+						var msgElement = document.createElement("div");
+						msgElement.appendChild(msgUsernameElement);
+						msgElement.appendChild(msgTextElement);
+						msgElement.className = "msg";
+						document.getElementById("results").appendChild(msgElement);
+					});
+				}
+				// Begin listening for data
+				startListening();
+				setupButton.disabled = true;
+				postButton.disabled = false;
+            });
+            postButton.addEventListener("click", function() {
+                var msgUser = usernameInput.value;
+                var msgText = textInput.value;
+				if (opponentRef) {
+					opponentRef.push({username:msgUser, text:msgText});
+					textInput.value = "";
+				}
+            });
+            
+			window.onbeforeunload = function(){
+			  return 'Are you sure you want to leave?';
+			};
+        </script>
+    </body>
+</html>
